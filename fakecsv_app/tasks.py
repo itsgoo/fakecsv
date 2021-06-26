@@ -17,7 +17,7 @@ def create_csv(numbers_of_lines, user):
         files_directory = '/media/'
         file_name = schema.title + str(schema.id) + '.csv'
         full_name = files_directory + file_name
-        with open(full_name, mode="w", encoding='utf-8') as w_file:
+        with open(file_name, mode="w", encoding='utf-8') as w_file:
             file_writer = csv.writer(w_file, delimiter = ",", lineterminator="\r")
             list1 = []
             list2 = []
