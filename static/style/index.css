@@ -1,0 +1,38 @@
+.center{
+	margin: 0 auto;
+}
+
+
+
+.py {
+	padding-top: 75px;
+    padding-bottom: 125px;
+}
+
+label{
+	color:#999999;
+
+}
+
+
+.bttns{
+	margin: 31px auto 0;
+    width: 105px;
+}
+
+.bttns2{
+	margin: 19px auto 0;
+    display: block;
+}
+
+.pad30{
+	padding: 0 30px; 
+}
+
+.mart10{
+	margin-top: 10px; 
+}
+
+.marr15{
+	margin-right: 15px;
+}

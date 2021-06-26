@@ -1,0 +1,114 @@
+<html dir="ltr"><head>
+	<title>  | FakeCSV </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<link rel="stylesheet" href="/static/style/index.css ">
+	<link rel="stylesheet" 
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+		crossorigin="anonymous"
+	>
+</head>
+<body>
+	
+<div class="container-fluid px-0 bg-light">
+
+	<div class="container-xl ">
+		
+		<nav class="navbar navbar-expand-lg navbar-light  ">
+			<a class="navbar-brand" href="/">FakeCSV</a>
+			<ul class="navbar-nav mr-auto mt-lg-0 ml-5 ">
+				<li class="nav-item mr-3">
+					<a class="nav-link pb-1" href="{% url 'csv_page' %}"> 
+						Schemas
+					</a>
+				</li>
+			</ul>
+
+			<div class="collapse navbar-collapse flex-grow-0">
+				<ul class="navbar-nav mr-auto mt-lg-0 "></ul>
+				<ul class="navbar-nav mt-lg-0 mr-auto mt-lg-0">
+					<li class="nav-item mr-3">
+						{% if user.is_authenticated %} 
+							<a class="nav-link"> Hello, {{request.user}}</a>
+						{% endif %}
+					</li>
+					<li class="nav-item mr-3">
+						{% if user.is_authenticated %} 
+							{% url 'logout_page' as  url_logout_page %}
+							<a class="nav-link"  href="{% url 'logout_page' %}">
+								LogOut
+							</a>
+						{% else %} 
+							{% url 'login_page' as  url_logoin_page %}
+							<a class="nav-link"  href="{% url 'login_page' %}">
+								LogIn
+							</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>
+
+
+
+
+<div class="container-xl">
+
+{% block content %}
+	<div class="col-lg-11 ">
+		
+		<div class="">
+			<h3 class="py-3 float-left">Data schemas</h3>
+			<a class="btn btn-success float-right my-3" 
+				href="{% url 'new_schema' %}" role="button">
+				New schema
+			</a>
+		</div>
+
+		
+		<table class="table table-bordered ">
+			<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Title</th>
+				<th scope="col">Modified</th>
+				<th scope="col">Actions</th>
+			</tr>
+			</thead>
+			<tbody>
+				{% for i in list_schemas %}
+					<tr>
+						<th scope="row">{{i.id}}</th>
+						<td>{{i.title}}</td>
+						<td>{{i.modified}}</td>
+						<td class="text-center">
+							<a class="text-primary pr-3" 
+								href="{% url 'detail_schema' i.id %}">
+								Edit schema
+							</a> 
+							<a class="text-danger" 
+								href="{% url 'delete_schema' i.id %}">
+								Delete
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}
+	
+
+
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" 
+	crossorigin="anonymous">
+</script>
+
+</body></html>

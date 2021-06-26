@@ -1,0 +1,151 @@
+{% extends 'index.html' %}
+
+
+	{% block content %}
+	
+
+	<div class="container-xl">
+
+		<div class="col-lg-11 ">
+		
+			<div class="">
+				<h3 class="py-3 float-left">New schema</h3>
+				<button 
+					form='form_schema' 
+					name='form_schema' 
+					type='submit' 
+					class='btn btn-primary float-right my-3'>
+					Submit
+				</button>
+			</div>
+	
+			
+		
+
+			<form id="form_schema" method="POST" class="overflow-hidden col-lg-11 ">
+				<div class="form-group  col-md-6 float-left " >
+					{% csrf_token %}
+					{{form_schema}}
+				</div>
+				
+			</form>
+
+
+
+			<div class="container">
+				
+				  
+			
+
+					<!-- {{form_list}} -->
+					{% for i in obj_list %}
+					
+			<form id="form_list{{i.id}}" method="POST">
+
+				{% csrf_token %}
+				<div class="row px-3 mb-4">
+
+				<input type="hidden" name="id" id="id" value={{i.id}}>
+
+				<div class="col">
+					<label for="id_order">Order:</label>
+					<input type="number" class="form-control" name="order" required="" id="id_order" value={{i.order}} >
+				</div>
+				<div class="col">
+					<label for="id_parameters">Parameters:</label>
+					<input type="text" class="form-control" name="parameters" maxlength="30" required="" id="id_parameters" value={{i.parameters}}>
+				</div>
+				<div class="col">
+					<label for="id_column_name">Column name:</label>
+					<input type="text"class="form-control"  name="column_name" maxlength="30" required="" id="id_column_name" value={{i.column_name}} >
+				</div>
+				<div class="col">
+					<label for="id_column_type">Columns type:</label>
+					<select name="column_type" class="form-control" id="id_column_type">
+						<option value={{i.column_type}}>{{i.column_type}}</option>
+						<option value=full_name>Full name</option>
+						<option value=Job>Job</option>
+						<option value=Email>Email</option>
+						<option value=domain_name>Domain name</option>
+						<option value=phone_number>Phone number</option>
+						<option value=company_name>Company name</option>
+						<option value=text>Text</option>
+						<option value=integer>Integer</option>
+						<option value=address>Address</option>
+						<option value=date>Date</option>
+					</select>
+
+				</div>
+			<div class="col">
+				<div class="bttns">
+					<button 
+					form='form_list{{i.id}}' 
+					name='form_list' 
+					type='submit' 
+					class='btn btn-primary'>
+				Edit
+				</button>
+				
+				<a href='{{request.path_info}}/delete_column/{{i.id}}' >delete</a>
+				
+				</div>
+				
+			</div>
+		</div>
+			</form>
+		
+			{% endfor %}
+
+		
+			
+			<form id="empty_form_list" method="POST" class="">
+				
+					{% csrf_token %}
+
+					<div class="border px-1 py-4">
+					<div class="container"><div class="row">
+					{% for i in empty_form_list%}
+					
+						
+						<div class="col">
+
+							{{i.label}}
+							{{i}}
+						</div>
+							  
+						
+						
+						
+						
+					{% endfor %}
+				
+				<div class="col">
+					<div class="bttns2">
+				<button 
+					form='empty_form_list' 
+					name='empty_form_list' 
+					type='submit' 
+					class='btn btn-primary mx-3 my-1'>
+				Add column
+				</button>
+			</div>
+			</div>
+				</div>
+
+			</div>
+			</div>
+				
+			</form>
+			
+			  
+
+
+
+
+
+	</div>
+</div>
+	
+
+	{% endblock %}
+	
