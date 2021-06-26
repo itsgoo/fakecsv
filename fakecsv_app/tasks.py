@@ -33,9 +33,9 @@ def create_csv(numbers_of_lines, user):
             for i in range(int(numbers_of_lines)-3):
                 file_writer.writerow('')
 
-        print('file ' + full_name + ' is done') 
+        print('file ' + file_name + ' is done') 
 
-        schema.link = full_name
+        schema.link = file_name
         schema.status = 'ready_to_download'
         schema.save()
 
