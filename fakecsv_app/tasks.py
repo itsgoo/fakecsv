@@ -14,10 +14,10 @@ def create_csv(numbers_of_lines, user):
         schema.save()
 
         file_fields = List.objects.filter(schema_id=schema.id).order_by('order')
-        files_directory = 'files/'
+        files_directory = '/media/'
         file_name = schema.title + str(schema.id) + '.csv'
         full_name = files_directory + file_name
-        with open(file_name, mode="w", encoding='utf-8') as w_file:
+        with open(full_name, mode="w", encoding='utf-8') as w_file:
             file_writer = csv.writer(w_file, delimiter = ",", lineterminator="\r")
             list1 = []
             list2 = []
@@ -33,9 +33,9 @@ def create_csv(numbers_of_lines, user):
             for i in range(int(numbers_of_lines)-3):
                 file_writer.writerow('')
 
-        print('file ' + file_name + ' is done') 
+        print('file ' + full_name + ' is done') 
 
-        schema.link = file_name
+        schema.link = full_name
         schema.status = 'ready_to_download'
         schema.save()
 
