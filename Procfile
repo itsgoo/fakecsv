@@ -1,0 +1,1 @@
+web: gunicorn fakecsv_project.wsgi --log-file 
