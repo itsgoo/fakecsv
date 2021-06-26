@@ -1,3 +1,2 @@
-web: gunicorn fakecsv_project.wsgi --log-file -
-worker: python manage.py celery worker --loglevel=info
-celery_beat: python manage.py celery beat --loglevel=info
+web: gunicorn fakecsv_project.wsgi
+worker: celery -A fakecsv_project worker -l INFO
