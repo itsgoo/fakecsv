@@ -1,2 +1,2 @@
 web: gunicorn fakecsv_project.wsgi
-worker: celery worker --app=tasks.app
+worker: celery -A fakecsv_project worker -l INFO
